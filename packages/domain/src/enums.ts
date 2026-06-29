@@ -1,0 +1,33 @@
+export enum AssetStatus {
+  IN_USE = 'IN_USE',
+  IDLE = 'IDLE',
+  SOLD = 'SOLD',
+  SCRAPPED = 'SCRAPPED',
+  LOST = 'LOST',
+  ARCHIVED = 'ARCHIVED',
+}
+
+export enum DepreciationMethod {
+  NONE = 'NONE',
+  STRAIGHT_LINE = 'STRAIGHT_LINE',
+  DOUBLE_DECLINING = 'DOUBLE_DECLINING',
+  CUSTOM_ANNUAL_RATE = 'CUSTOM_ANNUAL_RATE',
+  CUSTOM_SCHEDULE = 'CUSTOM_SCHEDULE',
+}
+
+export enum AttachmentType {
+  IMAGE = 'IMAGE',
+  INVOICE = 'INVOICE',
+  WARRANTY = 'WARRANTY',
+  MANUAL = 'MANUAL',
+  OTHER = 'OTHER',
+}
+
+export enum MaintenanceType {
+  REPAIR = 'REPAIR',
+  MAINTENANCE = 'MAINTENANCE',
+  CLEANING = 'CLEANING',
+  INSPECTION = 'INSPECTION',
+  UPGRADE = 'UPGRADE',
+  OTHER = 'OTHER',
+}
