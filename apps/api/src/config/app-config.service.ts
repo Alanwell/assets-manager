@@ -18,6 +18,7 @@ export class AppConfigService {
     process.env.REFRESH_TOKEN_EXPIRES_IN ?? '7d',
   );
   readonly corsOrigin = process.env.CORS_ORIGIN ?? 'http://localhost:5173';
+  readonly uploadDir = process.env.UPLOAD_DIR ?? './data/uploads';
 }
 
 function requiredSecret(name: string, developmentFallback: string): string {

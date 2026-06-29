@@ -38,6 +38,6 @@ class DatabaseLifecycle implements OnApplicationShutdown {
     },
     DatabaseLifecycle,
   ],
-  exports: [DATABASE],
+  exports: [DATABASE, SQLITE_CLIENT],
 })
 export class DatabaseModule {}

@@ -5,6 +5,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import multipart from '@fastify/multipart';
 import { AppModule } from './app.module';
 import { ApiExceptionFilter } from './common/http/api-exception.filter';
 import { AppConfigService } from './config/app-config.service';
@@ -17,6 +18,9 @@ async function bootstrap(): Promise<void> {
     new FastifyAdapter(),
   );
   const config = app.get(AppConfigService);
+  await app.register(multipart, {
+    limits: { fileSize: 20 * 1024 * 1024, files: 1 },
+  });
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({

@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "@asset-manager/domain": "workspace:*",
+    "@asset-manager/depreciation": "workspace:*",
     "@fastify/static": "9.1.3",
+    "@fastify/multipart": "10.0.0",
     "@nestjs/common": "11.1.27",
     "@nestjs/core": "11.1.27",
     "@nestjs/jwt": "11.0.2",
