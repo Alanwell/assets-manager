@@ -1,0 +1,17 @@
+{
+  "name": "@asset-manager/depreciation",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@asset-manager/domain": "workspace:*"
+  }
+}

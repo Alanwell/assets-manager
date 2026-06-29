@@ -1,0 +1,27 @@
+:root {
+  color: #183153;
+  background: #f5f7fb;
+  font-family: Inter, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.welcome {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #3b82f6;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+h1 {
+  margin: 0.5rem 0;
+}
