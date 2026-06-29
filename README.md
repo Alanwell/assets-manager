@@ -15,6 +15,9 @@
 
 ```bash
 pnpm install
+Copy-Item .env.example .env
+pnpm db:migrate
+pnpm db:seed
 pnpm dev
 ```
 
@@ -27,3 +30,8 @@ pnpm lint
 pnpm typecheck
 pnpm format:check
 ```
+
+API 默认地址为 `http://localhost:3000/api`，Swagger 文档位于
+`http://localhost:3000/api/docs`。
+
+开发 seed 账号：`test@example.com` / `AssetManager123!`。

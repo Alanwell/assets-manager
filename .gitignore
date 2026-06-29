@@ -4,6 +4,8 @@ node_modules/
 dist/
 coverage/
 .env
+data/
+apps/api/data/
 *.log
 *.tsbuildinfo
 .DS_Store
