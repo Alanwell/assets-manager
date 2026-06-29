@@ -1,11 +1,28 @@
 <script setup lang="ts">
-const stage = '阶段 1：基础工程已就绪';
+import { computed } from 'vue';
+import {
+  darkTheme,
+  dateZhCN,
+  NConfigProvider,
+  NDialogProvider,
+  NMessageProvider,
+  NNotificationProvider,
+  zhCN,
+} from 'naive-ui';
+import { useAppStore } from './stores/app';
+
+const appStore = useAppStore();
+const theme = computed(() => (appStore.darkMode ? darkTheme : null));
 </script>
 
 <template>
-  <main class="welcome">
-    <p class="eyebrow">ASSET MANAGER</p>
-    <h1>个人资产管理系统</h1>
-    <p>{{ stage }}</p>
-  </main>
+  <NConfigProvider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
+    <NMessageProvider>
+      <NDialogProvider>
+        <NNotificationProvider>
+          <RouterView />
+        </NNotificationProvider>
+      </NDialogProvider>
+    </NMessageProvider>
+  </NConfigProvider>
 </template>

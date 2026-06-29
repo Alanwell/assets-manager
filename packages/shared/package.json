@@ -16,5 +16,8 @@
     "test": "node --test",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@asset-manager/domain": "workspace:*"
   }
 }
