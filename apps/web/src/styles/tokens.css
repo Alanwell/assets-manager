@@ -1,0 +1,60 @@
+:root {
+  --font-sans:
+    Inter, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --bg-canvas: #f4f1ea;
+  --bg-elevated: #fbfaf7;
+  --bg-card: rgba(255, 255, 255, 0.82);
+  --bg-card-solid: #fffefa;
+  --bg-sidebar: #181a18;
+  --bg-sidebar-hover: rgba(255, 255, 255, 0.07);
+  --text-primary: #20221f;
+  --text-secondary: #73766f;
+  --text-muted: #9a9d96;
+  --text-on-dark: #f8f6ef;
+  --border-subtle: rgba(40, 42, 38, 0.09);
+  --border-strong: rgba(40, 42, 38, 0.16);
+  --accent: #ad8752;
+  --accent-strong: #8c6738;
+  --accent-soft: #eee2cf;
+  --positive: #507563;
+  --positive-soft: #e4eee8;
+  --danger: #b8675c;
+  --danger-soft: #f5e5e2;
+  --warning: #a8793e;
+  --warning-soft: #f4ead8;
+  --info: #637b86;
+  --info-soft: #e4ecef;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --shadow-card: 0 12px 35px rgba(44, 39, 30, 0.06);
+  --shadow-hover: 0 18px 48px rgba(44, 39, 30, 0.11);
+  --chart-1: #ad8752;
+  --chart-2: #567565;
+  --chart-3: #788b91;
+  --chart-4: #c79b89;
+  --chart-5: #8d7c68;
+}
+
+:root[data-theme='dark'] {
+  --bg-canvas: #121412;
+  --bg-elevated: #181a18;
+  --bg-card: rgba(31, 34, 31, 0.88);
+  --bg-card-solid: #202320;
+  --bg-sidebar: #0d0f0d;
+  --text-primary: #f1efe8;
+  --text-secondary: #aaa9a1;
+  --text-muted: #777a73;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --accent: #c6a16e;
+  --accent-strong: #dbb77f;
+  --accent-soft: rgba(198, 161, 110, 0.15);
+  --positive-soft: rgba(80, 117, 99, 0.2);
+  --danger-soft: rgba(184, 103, 92, 0.18);
+  --warning-soft: rgba(168, 121, 62, 0.18);
+  --info-soft: rgba(99, 123, 134, 0.18);
+  --shadow-card: 0 14px 38px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 20px 55px rgba(0, 0, 0, 0.3);
+}

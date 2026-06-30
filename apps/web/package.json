@@ -15,6 +15,7 @@
     "@asset-manager/depreciation": "workspace:*",
     "@asset-manager/domain": "workspace:*",
     "@asset-manager/shared": "workspace:*",
+    "@lucide/vue": "^1.22.0",
     "@vicons/ionicons5": "0.13.0",
     "@vueuse/core": "14.3.0",
     "echarts": "6.1.0",
