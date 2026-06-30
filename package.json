@@ -16,6 +16,8 @@
     "db:generate": "pnpm --filter @asset-manager/api db:generate",
     "db:migrate": "pnpm --filter @asset-manager/api db:migrate",
     "db:seed": "pnpm --filter @asset-manager/api db:seed",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

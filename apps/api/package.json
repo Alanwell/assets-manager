@@ -6,9 +6,9 @@
     "dev": "nest start --watch",
     "build": "nest build",
     "start": "node dist/main.js",
-    "test": "node --test",
-    "lint": "eslint src",
-    "typecheck": "tsc --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test dist-test/test/api.e2e.test.js",
+    "lint": "eslint src test",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/database/migrate.ts",
     "db:seed": "tsx src/database/seed.ts"

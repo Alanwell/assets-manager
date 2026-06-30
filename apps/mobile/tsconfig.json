@@ -4,9 +4,8 @@
     "target": "ES2023",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "declaration": true,
-    "rootDir": "src",
-    "outDir": "dist"
+    "types": ["@dcloudio/types", "vite/client"],
+    "jsx": "preserve"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
 }

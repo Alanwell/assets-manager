@@ -1,0 +1,11 @@
+{
+  "name": "Asset Manager",
+  "appid": "__UNI__ASSET_MANAGER",
+  "description": "个人与家庭资产管理移动端",
+  "versionName": "0.1.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "h5": { "router": { "mode": "hash", "base": "/" } },
+  "app-plus": {},
+  "mp-weixin": { "appid": "", "setting": { "urlCheck": false } }
+}
