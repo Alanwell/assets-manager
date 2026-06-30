@@ -15,7 +15,16 @@ import {
 import { AppConfigService } from '../config/app-config.service';
 import { DATABASE } from '../database/database.constants';
 import type { AppDatabase } from '../database/database.types';
-import { refreshTokens } from '../database/schema';
+import {
+  createDefaultCategoryRows,
+  createDefaultTagRows,
+} from '../database/default-taxonomy';
+import {
+  assetCategories,
+  assetTags,
+  refreshTokens,
+  users,
+} from '../database/schema';
 import type {
   AuthResponseDto,
   LoginRequestDto,
@@ -40,13 +49,26 @@ export class AuthService {
       throw new ConflictException('该邮箱已注册');
     }
     const now = new Date().toISOString();
-    const user = this.usersRepository.create({
-      id: randomUUID(),
-      email,
-      passwordHash: await hashPassword(dto.password),
-      displayName: dto.displayName.trim(),
-      createdAt: now,
-      updatedAt: now,
+    const userId = randomUUID();
+    const passwordHash = await hashPassword(dto.password);
+    const user = this.db.transaction((tx) => {
+      const created = tx
+        .insert(users)
+        .values({
+          id: userId,
+          email,
+          passwordHash,
+          displayName: dto.displayName.trim(),
+          createdAt: now,
+          updatedAt: now,
+        })
+        .returning()
+        .get();
+      tx.insert(assetCategories)
+        .values(createDefaultCategoryRows(userId, now))
+        .run();
+      tx.insert(assetTags).values(createDefaultTagRows(userId, now)).run();
+      return created;
     });
     return this.issueTokenPair(user);
   }

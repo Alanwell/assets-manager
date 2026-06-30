@@ -17,8 +17,4 @@ export class UsersRepository {
   findById(id: string): UserRecord | undefined {
     return this.db.select().from(users).where(eq(users.id, id)).get();
   }
-
-  create(user: typeof users.$inferInsert): UserRecord {
-    return this.db.insert(users).values(user).returning().get();
-  }
 }

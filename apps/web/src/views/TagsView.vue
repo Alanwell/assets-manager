@@ -16,13 +16,23 @@ import {
 } from 'naive-ui';
 import { h, onMounted, reactive, ref } from 'vue';
 const rows = ref<TagView[]>([]);
+const loading = ref(false);
+const saving = ref(false);
+const pagination = { pageSize: 10 };
 const show = ref(false);
 const editing = ref<TagView>();
 const form = reactive({ name: '', color: '#3b82f6' });
 const dialog = useDialog();
 const message = useMessage();
 async function load() {
-  rows.value = await resourceApi.tags();
+  loading.value = true;
+  try {
+    rows.value = await resourceApi.tags();
+  } catch (error) {
+    message.error(error instanceof Error ? error.message : '标签加载失败');
+  } finally {
+    loading.value = false;
+  }
 }
 onMounted(() => void load());
 function open(row?: TagView) {
@@ -32,10 +42,19 @@ function open(row?: TagView) {
   show.value = true;
 }
 async function save() {
-  if (editing.value) await resourceApi.updateTag(editing.value.id, form);
-  else await resourceApi.createTag(form);
-  show.value = false;
-  await load();
+  if (saving.value) return;
+  saving.value = true;
+  try {
+    if (editing.value) await resourceApi.updateTag(editing.value.id, form);
+    else await resourceApi.createTag(form);
+    show.value = false;
+    message.success('已保存');
+    await load();
+  } catch (error) {
+    message.error(error instanceof Error ? error.message : '标签保存失败');
+  } finally {
+    saving.value = false;
+  }
 }
 function remove(row: TagView) {
   dialog.warning({
@@ -93,8 +112,15 @@ const columns = [
 <template>
   <div>
     <PageHeader title="标签管理" description="用颜色和标签建立灵活的资产视角。"
-      ><NButton type="primary" @click="open()">新增标签</NButton></PageHeader
-    ><NCard><NDataTable :columns="columns" :data="rows" /></NCard
+      ><NButton type="primary" :disabled="loading" @click="open()"
+        >新增标签</NButton
+      ></PageHeader
+    ><NCard
+      ><NDataTable
+        :columns="columns"
+        :data="rows"
+        :loading="loading"
+        :pagination="pagination" /></NCard
     ><NModal
       v-model:show="show"
       preset="card"
@@ -103,7 +129,13 @@ const columns = [
       ><NInput v-model:value="form.name" placeholder="标签名称" /><NColorPicker
         v-model:value="form.color"
         style="margin-top: 12px"
-      /><NButton block type="primary" style="margin-top: 16px" @click="save"
+      /><NButton
+        block
+        type="primary"
+        style="margin-top: 16px"
+        :loading="saving"
+        :disabled="saving"
+        @click="save"
         >保存</NButton
       ></NModal
     >

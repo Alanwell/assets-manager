@@ -16,8 +16,13 @@ import {
   assetMaintenanceRecords,
   assets,
   assetStatusHistory,
+  assetTags,
   users,
 } from './schema';
+import {
+  createDefaultCategoryRows,
+  createDefaultTagRows,
+} from './default-taxonomy';
 
 const TEST_EMAIL = 'test@example.com';
 const TEST_PASSWORD = 'AssetManager123!';
@@ -37,25 +42,8 @@ async function seed(): Promise<void> {
     } else {
       const userId = randomUUID();
       const passwordHash = await hashPassword(TEST_PASSWORD);
-      const categoryNames = [
-        '数码电子',
-        '家具家电',
-        '摄影器材',
-        '车辆交通',
-        '房屋地产',
-        '收藏品',
-        '工具设备',
-        '运动户外',
-        '其他',
-      ];
-      const categoryRows = categoryNames.map((name, index) => ({
-        id: randomUUID(),
-        userId,
-        name,
-        sortOrder: index,
-        createdAt: now,
-        updatedAt: now,
-      }));
+      const categoryRows = createDefaultCategoryRows(userId, now);
+      const tagRows = createDefaultTagRows(userId, now);
       const examples = [
         [
           'MacBook Pro',
@@ -63,6 +51,7 @@ async function seed(): Promise<void> {
           AssetStatus.IN_USE,
           DepreciationMethod.STRAIGHT_LINE,
           36,
+          '电脑',
         ],
         [
           '客厅电视',
@@ -70,6 +59,7 @@ async function seed(): Promise<void> {
           AssetStatus.IN_USE,
           DepreciationMethod.DOUBLE_DECLINING,
           60,
+          '家具家电',
         ],
         [
           '全画幅相机',
@@ -77,6 +67,7 @@ async function seed(): Promise<void> {
           AssetStatus.IDLE,
           DepreciationMethod.CUSTOM_ANNUAL_RATE,
           60,
+          '摄影器材',
         ],
         [
           '城市通勤车',
@@ -84,6 +75,7 @@ async function seed(): Promise<void> {
           AssetStatus.SOLD,
           DepreciationMethod.STRAIGHT_LINE,
           48,
+          '车辆',
         ],
         [
           '机械腕表',
@@ -91,6 +83,7 @@ async function seed(): Promise<void> {
           AssetStatus.IN_USE,
           DepreciationMethod.NONE,
           undefined,
+          '收藏品',
         ],
         [
           '电动工具套装',
@@ -98,6 +91,7 @@ async function seed(): Promise<void> {
           AssetStatus.IN_USE,
           DepreciationMethod.CUSTOM_SCHEDULE,
           24,
+          '工具设备',
         ],
         [
           '露营帐篷',
@@ -105,6 +99,7 @@ async function seed(): Promise<void> {
           AssetStatus.LOST,
           DepreciationMethod.STRAIGHT_LINE,
           36,
+          '运动户外',
         ],
         [
           '扫地机器人',
@@ -112,13 +107,16 @@ async function seed(): Promise<void> {
           AssetStatus.SCRAPPED,
           DepreciationMethod.DOUBLE_DECLINING,
           36,
+          '家具家电',
         ],
       ] as const;
       const assetRows = examples.map(
-        ([name, price, status, method, life], index) => ({
+        ([name, price, status, method, life, categoryName], index) => ({
           id: randomUUID(),
           userId,
-          categoryId: categoryRows[index]?.id,
+          categoryId: categoryRows.find(
+            (category) => category.name === categoryName,
+          )?.id,
           name,
           purchaseDate: `2025-${(index + 1).toString().padStart(2, '0')}-01`,
           purchasePriceCents: price,
@@ -151,6 +149,7 @@ async function seed(): Promise<void> {
           })
           .run();
         tx.insert(assetCategories).values(categoryRows).run();
+        tx.insert(assetTags).values(tagRows).run();
         tx.insert(assets).values(assetRows).run();
         tx.insert(assetDepreciationProfiles)
           .values(

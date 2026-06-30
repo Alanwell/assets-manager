@@ -978,6 +978,23 @@ a:hover {
 .muted {
   color: var(--text-secondary);
 }
+.category-icon-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+.category-icon-cell svg {
+  color: var(--accent);
+}
+.category-icon-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.category-icon-option svg {
+  color: var(--accent);
+}
 
 /* Naive UI 只承担交互，视觉并入设计系统 */
 .n-button {
