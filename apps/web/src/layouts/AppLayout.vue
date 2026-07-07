@@ -149,6 +149,16 @@ async function handleUser(key: string): Promise<void> {
         </NDropdown>
       </header>
       <div class="page-content"><RouterView /></div>
+      <footer class="site-filing">
+      <span>ICP 备案号：</span>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          皖ICP备2026020957号
+        </a>
+      </footer>
     </main>
   </div>
 </template>

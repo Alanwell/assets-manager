@@ -11,9 +11,10 @@ const route = useRoute();
 const message = useMessage();
 const loading = ref(false);
 const form = reactive({
-  email: 'test@example.com',
-  password: 'AssetManager123!',
+  email: '',
+  password: '',
 });
+
 async function submit(): Promise<void> {
   loading.value = true;
   try {
@@ -32,6 +33,7 @@ async function submit(): Promise<void> {
   }
 }
 </script>
+
 <template>
   <main class="auth-page">
     <section class="auth-panel">
@@ -39,20 +41,24 @@ async function submit(): Promise<void> {
         <div class="auth-brand">ASSET MANAGER</div>
         <h1>欢迎回来</h1>
         <p>登录你的私人资产档案馆，继续追踪每一件重要物品的价值。</p>
-        <NForm @submit.prevent="submit"
-          ><NFormItem label="邮箱"
-            ><NInput v-model:value="form.email" /></NFormItem
-          ><NFormItem label="密码"
-            ><NInput
+        <NForm @submit.prevent="submit">
+          <NFormItem label="邮箱">
+            <NInput v-model:value="form.email" />
+          </NFormItem>
+          <NFormItem label="密码">
+            <NInput
               v-model:value="form.password"
               type="password"
-              show-password-on="click" /></NFormItem
-          ><NButton type="primary" block attr-type="submit" :loading="loading"
-            >登录</NButton
-          ></NForm
-        >
+              show-password-on="click"
+            />
+          </NFormItem>
+          <NButton type="primary" block attr-type="submit" :loading="loading">
+            登录
+          </NButton>
+        </NForm>
         <div class="auth-footer">
-          还没有账号？<RouterLink to="/register">立即注册</RouterLink>
+          <span>还没有账号？</span>
+          <RouterLink to="/register">立即注册</RouterLink>
         </div>
       </div>
     </section>
@@ -65,5 +71,16 @@ async function submit(): Promise<void> {
         </p>
       </div>
     </aside>
+    <footer class="auth-page__filing">
+      <span>ICP 备案号：</span>
+      <a
+        class="auth-filing"
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        皖ICP备2026020957号
+      </a>
+    </footer>
   </main>
 </template>

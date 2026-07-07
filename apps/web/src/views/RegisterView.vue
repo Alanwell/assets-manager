@@ -4,11 +4,13 @@ import { ApiError } from '@asset-manager/api-client';
 import { NButton, NForm, NFormItem, NInput, useMessage } from 'naive-ui';
 import { reactive, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
+
 const auth = useAuthStore();
 const router = useRouter();
 const message = useMessage();
 const loading = ref(false);
 const form = reactive({ displayName: '', email: '', password: '' });
+
 async function submit(): Promise<void> {
   loading.value = true;
   try {
@@ -21,6 +23,7 @@ async function submit(): Promise<void> {
   }
 }
 </script>
+
 <template>
   <main class="auth-page">
     <section class="auth-panel">
@@ -28,23 +31,28 @@ async function submit(): Promise<void> {
         <div class="auth-brand">ASSET MANAGER</div>
         <h1>创建账号</h1>
         <p>创建你的私人资产空间，从今天开始清楚掌握拥有之物。</p>
-        <NForm @submit.prevent="submit"
-          ><NFormItem label="昵称"
-            ><NInput v-model:value="form.displayName" /></NFormItem
-          ><NFormItem label="邮箱"
-            ><NInput v-model:value="form.email" /></NFormItem
-          ><NFormItem label="密码"
-            ><NInput
+        <NForm @submit.prevent="submit">
+          <NFormItem label="昵称">
+            <NInput v-model:value="form.displayName" />
+          </NFormItem>
+          <NFormItem label="邮箱">
+            <NInput v-model:value="form.email" />
+          </NFormItem>
+          <NFormItem label="密码">
+            <NInput
               v-model:value="form.password"
               type="password"
               show-password-on="click"
-              placeholder="至少 8 位" /></NFormItem
-          ><NButton type="primary" block attr-type="submit" :loading="loading"
-            >注册</NButton
-          ></NForm
-        >
+              placeholder="至少 8 位"
+            />
+          </NFormItem>
+          <NButton type="primary" block attr-type="submit" :loading="loading">
+            注册
+          </NButton>
+        </NForm>
         <div class="auth-footer">
-          已有账号？<RouterLink to="/login">返回登录</RouterLink>
+          <span>已有账号？</span>
+          <RouterLink to="/login">返回登录</RouterLink>
         </div>
       </div>
     </section>
@@ -57,5 +65,16 @@ async function submit(): Promise<void> {
         </p>
       </div>
     </aside>
+    <footer class="auth-page__filing">
+      <span>ICP 备案号：</span>
+      <a
+        class="auth-filing"
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        皖ICP备2026020957号
+      </a>
+    </footer>
   </main>
 </template>

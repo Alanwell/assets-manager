@@ -183,6 +183,21 @@ a:hover {
   min-height: calc(100vh - 72px);
   padding: 30px 32px 56px;
 }
+.site-filing {
+  display: flex;
+  justify-content: center;
+  padding: 0 32px 28px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.site-filing a,
+.auth-filing {
+  color: inherit;
+}
+.site-filing a:hover,
+.auth-filing:hover {
+  color: var(--accent);
+}
 .page-content > * {
   width: min(1480px, 100%);
   margin-inline: auto;
@@ -873,6 +888,7 @@ a:hover {
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(380px, 0.8fr) 1.2fr;
+  grid-template-rows: 1fr auto;
   background: var(--bg-canvas);
 }
 .auth-panel {
@@ -917,9 +933,29 @@ a:hover {
   line-height: 1.7;
 }
 .auth-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-top: 20px;
   color: var(--text-secondary);
   text-align: center;
+}
+.auth-page__filing {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.auth-filing {
+  color: inherit;
+  font-size: 12px;
+}
+.auth-filing:hover {
+  color: var(--accent);
 }
 .auth-visual {
   position: relative;
@@ -1060,6 +1096,9 @@ a:hover {
   .page-content {
     padding: 22px 18px 44px;
   }
+  .site-filing {
+    padding: 0 18px 24px;
+  }
   .filter-bar {
     grid-template-columns: 1fr 1fr;
   }
@@ -1078,6 +1117,9 @@ a:hover {
   .auth-panel {
     min-height: 100vh;
     padding: 28px;
+  }
+  .auth-page__filing {
+    padding: 0 28px 24px;
   }
 }
 @media (max-width: 640px) {
