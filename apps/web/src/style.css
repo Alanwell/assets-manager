@@ -186,6 +186,9 @@ a:hover {
 .site-filing {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   padding: 0 32px 28px;
   color: var(--text-muted);
   font-size: 12px;
@@ -198,10 +201,43 @@ a:hover {
 .auth-filing:hover {
   color: var(--accent);
 }
+.site-filing a,
+.auth-filing--police {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.site-filing img,
+.auth-filing--police img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
 .page-content > * {
   width: min(1480px, 100%);
   margin-inline: auto;
   animation: page-in 280ms ease both;
+}
+.site-footer {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 28px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+}
+.site-footer a:hover {
+  color: var(--accent);
+}
+.site-footer img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 @keyframes page-in {
   from {
@@ -946,6 +982,9 @@ a:hover {
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   padding: 5px;
   color: var(--text-muted);
   font-size: 12px;

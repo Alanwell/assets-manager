@@ -81,6 +81,15 @@ async function submit(): Promise<void> {
       >
         皖ICP备2026020957号
       </a>
+      <a
+        class="auth-filing auth-filing--police"
+        href="https://beian.mps.gov.cn/#/query/webSearch?code=34040002000645"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img src="/beian-icon.png" alt="公安备案图标" />
+        皖公网安备34040002000645号
+      </a>
     </footer>
   </main>
 </template>

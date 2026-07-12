@@ -158,6 +158,14 @@ async function handleUser(key: string): Promise<void> {
         >
           皖ICP备2026020957号
         </a>
+        <a
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=34040002000645"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img src="/beian-icon.png" alt="公安备案图标" />
+          皖公网安备34040002000645号
+        </a>
       </footer>
     </main>
   </div>
